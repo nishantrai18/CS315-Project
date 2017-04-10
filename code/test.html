@@ -1,0 +1,50 @@
+<html>
+<body style="width: 80%; margin-left:10%; margin-right:10%; font-family:'Dosis',serif;">
+
+	<h1 align="center">Assignment 1 - CS252</h1>
+	<h3 align="center">Nishant Rai - 13449</h2>
+	<hr width="90%">
+
+	<br>
+
+	<form action="datahandle.php" method="post">
+		<fieldset>
+			<legend><h2 align="center"> Form Submit </h2> </legend>
+				<br>Name : <input style = "margin-left: 2.8cm;width:30%;" pattern = "[ a-zA-Z]*"
+			 			type="text" name="name" placeholder="Student's Name" required/><br>
+				<br>Date of Birth : <input style = "margin-left: 1.6cm;width:30%;" type="date"
+						name="dob" placeholder="dd-mm-yyyy" required/><br>
+				<br>Roll Number : <input style = "margin-left: 1.6cm;width:30%;" pattern = "[0-9]{5,5}"
+			 			type="text" name="roll" placeholder="Roll number (5 digit)" required/><br>
+				<br>Registration Number : <input style = "margin-left: 0.3cm;width:30%;" pattern = "[0-9a-zA-Z]{5,5}"
+			 			type="text" name="rnum" placeholder="String of length : 5" required/><br>
+				<br>CPI : <input type="number" style = "margin-left: 3.2cm;width:30%;" step = "0.01" min="0.00" max="10.0" 							name="cpi" placeholder="CPI" required/><br>
+				<br><input type="submit">
+		</fieldset>
+	</form>
+
+	<br>
+
+	<form action="updatedata.php" method="post">
+		<fieldset>
+			<legend><h2 align="center">Update Data</h2> </legend>
+			<br>Roll Number : <input style = "margin-left: 1.6cm;width:30%;" pattern = "[0-9]{5,5}"
+			 			type="text" name="roll" placeholder="Roll number (5 digit)"/><br>
+			<br><input type="submit" value="Update">
+		</fieldset>	
+	</form>
+
+	<br>
+
+	<center>
+		<form action="showdata.php" method="post">
+			<fieldset>
+			<legend><h2 align="center">Show Data</h2> </legend>
+				<input type="submit" value="Show All the Data">
+			</fieldset>
+		</form>
+	</center>
+
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+\title{\Huge\textsc{No-Dues Management System}\\ \vspace{6mm}
+\Large\textsc{CS315A: Principles of Database Systems}}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage[export]{adjustbox}
+\usepackage{url}
+\usepackage{authblk}
+
+\author{\small{Amlan Kar (13105), Nishant Rai (13449), Jeet Patel (13465)}}
+\date{\vspace{-5ex}}
+
+\begin{document}
+	\maketitle
+		
+	\section{Overview}
+	
+While leaving the institute, individuals are supposed to ensure that their dues have been cleared from all departments. Currently, this is done manually which is a very time consuming and tedious process. We propose to implement a due management system which automates this task. We plan on adding support mainly for administrators (Which have rights over clearing and adding dues) and individuals (Students, Faculty or other users whose dues are to be recorded). Department wise support maybe added depending upon the project progress.\\
+
+\noindent
+The main objective of our system is reduction of the time taken in maintaining and handling records. We plan on designing a rudimentary user interface to make the system easier to use.
+
+	\section{User Classes and Privileges}	
+	
+	We plan on adding support for the following classes of users (Details regarding their privileges are also provided),	
+	
+	\begin{enumerate}
+		\item \textbf{Administrator:} There are multiple administrators which represent different departments. These department admins then add users and must maintain their records. A super administrator also exists which creates accounts for new departments.
+		\item \textbf{Users:} Users (i.e. mainly students, faculty or other users whose dues are to be recorded) can sign up individually. They are then added by the department admins. Clearance of dues can be initiated from their side, which must then be approved by the department.
+	\end{enumerate}
+
+\noindent
+Note that the proposed structure may be modified depending on the project progress.
+
+	\bibliographystyle{plain}
+
+	\bibliography{sources}
+
+\end{document}
+
+
+
