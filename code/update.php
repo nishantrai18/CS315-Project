@@ -2,7 +2,7 @@
 
 $sname = 'localhost';
 $uname = 'root';
-$pwd = 'mysql';
+$pwd = 'db.123';
 
 $con = mysql_connect($sname,$uname,$pwd);
 
@@ -41,7 +41,7 @@ if(! $retval)
 
 echo "UPDATED NICELY\n";
 
-echo "<br><center><form action='test.html' method='post'> <input type='submit' value='Go to Main Page'></form></center>";
+echo "<br><center><form action='index.html' method='post'> <input type='submit' value='Go to Main Page'></form></center>";
 
 echo "<br><center><form action='showdata.php' method='post'> <input type='submit' value='See the Updated Data'></form></center>";
 

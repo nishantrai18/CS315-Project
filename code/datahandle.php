@@ -1,15 +1,15 @@
 <?php
-$sname = "localhost";
+$sname = "127.0.0.1";
 $uname = "root";
-$pwd = "mysql";
+$pwd = "db.123";
 
 $connect = mysql_connect($sname,$uname,$pwd);
 
 if (! $connect){
-	die("NOT CONNECTED\n" . mysql_error());
+	die("NOT CONNECTED!\n" . mysql_error());
 }
 
-echo ("CONNECTED\n");
+echo ("CONNECTED!\n");
 
 $name = $_POST['name'];
 $dob = $_POST['dob'];
@@ -26,17 +26,17 @@ elseif ($cpi < "10" )	$grade = "B";
 
 $comm = "INSERT INTO `student` (`name`,`dob`,`roll`,`rnum`,`cpi`,`grade`) VALUES ('$name','$dob','$roll','$rnum','$cpi','$grade')";
 
-mysql_select_db('tester');
+mysql_select_db('cs252test');
 $retval = mysql_query( $comm, $connect );
 
 if(! $retval)
 {
-	die("DATA ENTRY FAILURE\n" . mysql_error());
+	die("DATA ENTRY FAILURE!\n" . mysql_error());
 }
 
 echo "ENTERED DATA\n";
 
-echo "<br><center><form action='test.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
+echo "<br><center><form action='index.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
 echo "<br><center><form action='showdata.php' method='post'> <input type='submit' value='See the Updated Data'></form></center>";
 
 mysql_close($connect);

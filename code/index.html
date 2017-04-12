@@ -18,7 +18,7 @@
 			 			type="text" name="roll" placeholder="Roll number (5 digit)" required/><br>
 				<br>Registration Number : <input style = "margin-left: 0.3cm;width:30%;" pattern = "[0-9a-zA-Z]{5,5}"
 			 			type="text" name="rnum" placeholder="String of length : 5" required/><br>
-				<br>CPI : <input type="number" style = "margin-left: 3.2cm;width:30%;" step = "0.01" min="0.00" max="10.0" 							name="cpi" placeholder="CPI" required/><br>
+				<br>CPI : <input type="number" style = "margin-left: 3.2cm;width:30%;" step = "0.01" min="0.00" max="10.0" name="cpi" placeholder="CPI" required/><br>
 				<br><input type="submit">
 		</fieldset>
 	</form>
@@ -32,6 +32,19 @@
 			 			type="text" name="roll" placeholder="Roll number (5 digit)"/><br>
 			<br><input type="submit" value="Update">
 		</fieldset>	
+	</form>
+
+	<br>
+
+	<form action="login.php" method="post">
+		<fieldset>
+			<legend><h2 align="center"> CC Login </h2> </legend>
+				<br>User ID : <input style = "margin-left: 2.47cm;width:30%;" pattern = "[ a-zA-Z]*"
+			 			type="text" name="id" placeholder="CC Login" required/><br>
+				<br>Password : <input style = "margin-left: 2.2cm;width:30%;" type="password"
+						name="pass" placeholder="Password" required/><br>
+				<br><input type="submit">
+		</fieldset>
 	</form>
 
 	<br>

@@ -41,6 +41,6 @@ if($i=="0")
 	echo "<center><br><br><h3>No Data to show</h3><br><br><br></center>";
 }
 
-echo "<center><form action='test.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
+echo "<center><form action='index.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
 
 ?>

@@ -2,7 +2,7 @@
 
 $sname = 'localhost';
 $uname = 'root';
-$pwd = 'mysql';
+$pwd = 'db.123';
 
 $con = mysql_connect($sname,$uname,$pwd);
 
@@ -13,7 +13,7 @@ $roll =  $_POST['roll'];
 
 $query = "DELETE FROM `student` WHERE `roll` = '$roll' ";
 
-mysql_select_db('tester');
+mysql_select_db('cs252test');
 
 $retval = mysql_query($query, $con);
 
@@ -22,7 +22,7 @@ if(! $retval)
 
 echo "DELETED\n";
 
-echo "<br><center><form action='test.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
+echo "<br><center><form action='index.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
 echo "<br><center><form action='showdata.php' method='post'> <input type='submit' value='See the Updated Data'></form></center>";
 
 mysql_close($con);

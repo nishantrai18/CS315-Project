@@ -6,10 +6,10 @@ $pwd = "db.123";
 $con = mysql_connect($sname,$uname,$pwd);
 
 if (! $con){
-	die(mysql_error());
+	die("NOT CONNECTED\n" . mysql_error());
 }
 
-mysql_select_db('tester');
+mysql_select_db('cs252test');
 
 $query = "SELECT * FROM `student`";
 $result = mysql_query($query, $con);
@@ -44,7 +44,7 @@ if($i=="0")
 	echo "<center><br><br><h3>No Data to show</h3><br><br><br></center>";
 }
 
-echo "<br><br><center><form action='test.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
+echo "<br><br><center><form action='index.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
 
 mysql_close($con);
 ?>
