@@ -1,0 +1,5 @@
+USE cs252test;
+
+CREATE TABLE profLogin (username varchar(20) NOT NULL, password varchar(100) NOT NULL, PRIMARY KEY(username));
+
+INSERT INTO profLogin values("admin", aes_encrypt("admin", "some_secret_key"));

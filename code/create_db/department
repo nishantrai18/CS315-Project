@@ -1,0 +1,14 @@
+USE cs252test;
+
+CREATE TABLE department (
+		dname varchar(20) NOT NULL,
+		name varchar(20) NOT NULL,
+		miscFlag BINARY(1) DEFAULT 0,
+		PRIMARY KEY(dname)
+);
+
+INSERT INTO department values (
+				"cse",
+				"Computer Science",
+				0
+);

@@ -1,0 +1,22 @@
+USE cs252test;
+
+CREATE TABLE transactions (
+		tid SERIAL NOT NULL,
+		sname varchar(20) NOT NULL,
+		dname varchar(20) NOT NULL,
+		value INT DEFAULT 0,
+		date DATE NOT NULL,
+		remarks varchar(200),
+		PRIMARY KEY(tid),
+		FOREIGN KEY (dname) REFERENCES department(dname),
+		FOREIGN KEY (sname) REFERENCES student(sname)
+);
+
+INSERT INTO transactions values (
+				0,
+				"nishant",
+				"cse",
+				1000,
+				"2009-12-31",
+				"No remarks"
+);
