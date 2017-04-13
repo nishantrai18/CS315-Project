@@ -1,0 +1,14 @@
+USE nodues;
+
+CREATE TABLE admin (uname VARCHAR(20) NOT NULL,
+                    name VARCHAR(20) NOT NULL,
+                    dept VARCHAR(20) DEFAULT NULL,
+                    superFlag BINARY(1) NOT NULL DEFAULT 0,
+                    PRIMARY KEY(uname)
+);
+
+INSERT INTO admin
+VALUES ('amlan', 'Amlan Kar', NULL, 1);
+
+INSERT INTO admin
+VALUES ('nishantr', 'Nishant Rai', NULL, 1);

@@ -1,0 +1,2 @@
+USE nodues;
+DROP TABLE admin;
