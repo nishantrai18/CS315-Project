@@ -1,6 +1,7 @@
 <?php
 
 @session_start();
+include_once("check.php");
 include_once('header.html');
 
 $sname = "127.0.0.1";
@@ -18,7 +19,7 @@ if (! $connect){
 mysql_select_db($dbname);
 
 echo"
-    <form action='e-mail.php' method='post'>
+    <form action='email.php' method='post'>
     <center>
     <table>
     <th> Complaint Form </th>

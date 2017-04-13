@@ -27,10 +27,10 @@ elseif (strcmp($stat, 'all') == 0)
 else
     echo ("CRITICAL ERROR\n");
 
-//Choose the required database 
+//Choose the required database
 mysql_select_db($dbname);
 
-$query = "SELECT * 
+$query = "SELECT *
           FROM transactions
           ";
 
@@ -80,9 +80,9 @@ if(! $result) {
 // Get the number of rows in the result
 // Not really required here
 $num_rows = mysql_num_rows($result);
- 
-echo "<center><h2>Relavant Transactions</h2><table border='2'>\n<tr>\n<th> Student Name </th>\n" . 
-    "<th> Department Name </th>\n<th> Value </th>\n<th> Date </th>\n" . 
+
+echo "<center><h2>Relavant Transactions</h2><table border='2'>\n<tr>\n<th> Student Name </th>\n" .
+    "<th> Department Name </th>\n<th> Value </th>\n<th> Date </th>\n" .
     "<th> Remarks </th>\n<th> Status </th>\n<th> Complain </th>\n";
 
 $i = 0;
@@ -93,7 +93,7 @@ while($row = mysql_fetch_array($result)) {
     echo "<td>" . $row['value'] . "</td>" . "<td>" . $row['date'] . "</td>";
     echo "<td>" . $row['remarks'] . "</td>" . "<td>" . $row['due'] . "</td>";
     echo "<td>" . "<form action='none.php' method='post'>" .
-            "<input type='hidden' name='complain' value=" . $row['tid'] . ">" . 
+            "<input type='hidden' name='complain' value=" . $row['tid'] . ">" .
             "   <input type='submit' value='Complain'></form>" . "</td>";
     echo "</tr>";
     $i = $i +1;

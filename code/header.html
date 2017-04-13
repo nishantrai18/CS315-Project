@@ -4,11 +4,13 @@
 <head>
 <td id='logo'>
     <img src='static/img/iitklogo.png' style='height: 5em; width:auto;'></img>
-</td>    
+</td>
 <td id = 'heading'>
     IITK No Dues
 </td>
-<td id = 'logo'></td>
+<td id = 'logo' align='right'>
+Welcome <?php echo $_SESSION['id'];?> (<a href='logout.php'>Logout</a>)
+</td>
 </table>
 </tr>
 </head>
