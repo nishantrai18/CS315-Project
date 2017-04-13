@@ -1,4 +1,4 @@
-USE cs252test;
+USE nodues;
 
 CREATE TABLE department (
 		dname varchar(20) NOT NULL,
