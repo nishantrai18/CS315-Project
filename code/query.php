@@ -2,11 +2,7 @@
 
 @session_start();
 include_once("header.html");
-
-if(!isset($_SESSION['id'])) {
-	echo"<script type='text/javascript'>alert('User not logged in!');</script>";
-	die();
-}
+include_once("check.php");
 
 $sname = "127.0.0.1";
 $uname = "root";
@@ -32,7 +28,7 @@ if(! $result) {
 
 echo "
 	<html>
-	<body; font-family:'Dosis',serif;'>
+	<body>
 
 		<br>
 
@@ -40,7 +36,7 @@ echo "
 			<fieldset>
 				<legend><h2 align='center'> Query Dues for a Department </h2> </legend>
 				<br>Department Name : </b>
-				<select style = 'margin-left: 1.6cm;width:30%;' multiple name='depList[]' size='3'>
+				<select style = 'margin-left: 1.6cm;width:30%;' multiple name='depList[]' size='3' required>
 	";
 
 // Get the number of rows in the result
@@ -52,12 +48,18 @@ for ($i = 0; $i < $num_rows; $i++) {
 }
 
 echo "
-				<option value='all'> All Departments </option>
+				<option value='##all##'> All Departments </option>
 				</select><br>
 				<br>Initial Date : <input style = 'margin-left: 3.15cm;width:30%;' type='date'
 						name='startDate' placeholder='dd-mm-yyyy' required/><br>
 				<br>End Date : <input style = 'margin-left: 3.55cm;width:30%;' type='date'
 						name='endDate' placeholder='dd-mm-yyyy' required/><br>
+				<br>Status : </b>
+				<select style = 'margin-left: 4.15cm;width:30%;' name='stat'>
+					<option value='due'>Uncleared Dues</option>
+					<option value='clear'>Cleared Dues</option>
+					<option value='all'>All Dues</option>
+				</select><br>
 				<br><input type='submit'>
 			</fieldset>
 		</form>

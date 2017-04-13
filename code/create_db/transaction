@@ -7,6 +7,7 @@ CREATE TABLE transactions (
 		value INT DEFAULT 0,
 		date DATE NOT NULL,
 		remarks varchar(200),
+		due BINARY(1) DEFAULT 1,
 		PRIMARY KEY(tid),
 		FOREIGN KEY (dname) REFERENCES department(dname),
 		FOREIGN KEY (sname) REFERENCES student(sname)
@@ -18,5 +19,6 @@ INSERT INTO transactions values (
 				"cse",
 				1000,
 				"2009-12-31",
-				"No remarks"
+				"No remarks",
+				1
 );

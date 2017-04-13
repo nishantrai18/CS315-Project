@@ -3,7 +3,7 @@
 $sname = "127.0.0.1";
 $uname = "root";
 $pwd = "db.123";
-$dbname = "cs252test";
+$dbname = "nodues";
 
 $connect = mysql_connect($sname,$uname,$pwd);
 
@@ -37,8 +37,8 @@ while($num_rows > 0) {
     $tmpPass    = $tmpDetails["password"];
     $flag       = 0;
 
-    if(strcmp($tmpName, $userName) == 0) {
-        if(strcmp($tmpPass, $userPass) == 0) {
+    if (strcmp($tmpName, $userName) == 0) {
+        if (strcmp($tmpPass, $userPass) == 0) {
             $flag = 1;
             break;
         }
