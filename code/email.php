@@ -5,6 +5,9 @@ include_once("check.php");
 include_once('header.html');
 require("sql_conn.php");
 
+if(isset($_POST['complain'])){
+$tid = $_POST['complain'];
+$_POST=array();
 echo"
     <form action='email.php' method='post'>
     <center>
@@ -12,7 +15,7 @@ echo"
     <th> Complaint Form </th>
     <tr>
     <td> Transaction ID: </td>
-    <td> <input type='number', name='tid'></input></td>
+    <td> <input type='number', name='tid' value='$tid'></input></td>
     <td id='tid_error'></td>
     </select>
     </tr>
@@ -24,6 +27,29 @@ echo"
     </tr>
     </table>
 ";
+}
+
+else{
+    echo"
+        <form action='email.php' method='post'>
+        <center>
+        <table>
+        <th> Complaint Form </th>
+        <tr>
+        <td> Transaction ID: </td>
+        <td> <input type='number', name='tid'></input></td>
+        <td id='tid_error'></td>
+        </select>
+        </tr>
+        <td> Complaint: </td>
+        <td> <textarea name='complaint' cols='65' rows='7'></textarea></td>
+        <tr>
+        <td> <input type='submit' value='Submit'> </td>
+        <td id='submit_error'></td>
+        </tr>
+        </table>
+    ";
+}
 
 if(isset($_POST['tid'])){
 
@@ -77,20 +103,24 @@ if ($result){
     for ($i = 0; $i < $num_rows; $i++) {
 	    $tmpDetails = mysql_fetch_array($result);
         $mail->AddAddress($tmpDetails['uname']."@iitk.ac.in");
-        echo $tmpDetails['uname']."@iitk.ac.in";
+        // echo $tmpDetails['uname']."@iitk.ac.in";
     }
 
     if(!$mail->Send()){
-        echo "Message was not sent. Please try again later!";
+        echo"<script type='text/javascript'>alert('Complaint could not be sent,
+        please try again later!');
+        window.location.href='query.php';</script>";
     }
     else
     {
-        echo "Message has been sent";
+        echo"<script type='text/javascript'>alert('Complaint Sent!');
+             window.location.href='query.php';</script>";    }
     }
-}
 
 else{
     echo "Internal Error!";
 }
 }
+
+
 ?>

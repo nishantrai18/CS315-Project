@@ -22,8 +22,10 @@ echo "
 		<form action='query.php' method='post'>
 			<fieldset>
 				<legend><h2 align='center'> Query Dues for a Department </h2> </legend>
-				<br>Department Name : </b>
-				<select style = 'margin-left: 1.6cm;width:30%;' multiple name='depList[]' size='3' required>
+                <table>
+                <tr>
+        		<td>Department Name : </b></td>
+				<td><select multiple name='depList[]' size='3' required>
 	";
 
 // Get the number of rows in the result
@@ -36,18 +38,19 @@ for ($i = 0; $i < $num_rows; $i++) {
 
 echo "
 				<option value='##all##'> All Departments </option>
-				</select><br>
-				<br>Initial Date : <input style = 'margin-left: 3.15cm;width:30%;' type='date'
-						name='startDate' placeholder='dd-mm-yyyy' required/><br>
-				<br>End Date : <input style = 'margin-left: 3.55cm;width:30%;' type='date'
-						name='endDate' placeholder='dd-mm-yyyy' required/><br>
-				<br>Status : </b>
-				<select style = 'margin-left: 4.15cm;width:30%;' name='stat'>
+                </select></td></tr>
+				<tr><td>Initial Date : </td><td><input type='date'
+						name='startDate' placeholder='dd-mm-yyyy' required/></td></tr>
+				<tr><td>End Date : </td><td><input type='date'
+						name='endDate' placeholder='dd-mm-yyyy' required/></td></tr>
+				<tr><td>Status : </td>
+				<td><select name='stat'>
 					<option value='due'>Uncleared Dues</option>
 					<option value='clear'>Cleared Dues</option>
 					<option value='all'>All Dues</option>
-				</select><br>
-				<br><input type='submit'>
+				</select></td></tr>
+				<tr><td><input type='submit'></td></tr>
+                </table>
 			</fieldset>
 		</form>
 
@@ -57,13 +60,13 @@ echo "
 	</html>
 	";
 
-if (isset($_POST)){
+if (isset($_POST['startDate'])){
     $startDate = $_POST['startDate'];
     $endDate   = $_POST['endDate'];
     $stat      = $_POST['stat'];
     $statVal   = 0;
 
-    echo $stat;
+    // echo $stat;
 
     if (strcmp($stat, 'due') == 0)
         $statVal = 1;
@@ -105,7 +108,7 @@ if (isset($_POST)){
         $query = $query . ")\n";
     }
 
-    echo $query;
+    // echo $query;
 
     # Checking the transcation status
     if ($statVal != 2) {
@@ -116,7 +119,7 @@ if (isset($_POST)){
         $query = $query . "due = $statVal";
     }
 
-    echo $query;
+    // echo $query;
 
     $result = mysql_query($query, $connect);
 
@@ -139,9 +142,9 @@ if (isset($_POST)){
         echo "<td>" . $row['sname'] . "</td>" . "<td>" . $row['dname'] . "</td>";
         echo "<td>" . $row['value'] . "</td>" . "<td>" . $row['date'] . "</td>";
         echo "<td>" . $row['remarks'] . "</td>" . "<td>" . $row['due'] . "</td>";
-        echo "<td>" . "<form action='none.php' method='post'>" .
+        echo "<td>" . "<form action='email.php' method='post'>" .
                 "<input type='hidden' name='complain' value=" . $row['tid'] . ">" .
-                "   <input type='submit' value='Complain'></form>" . "</td>";
+                "<input type='submit' value='Complain'></form>" . "</td>";
         echo "</tr>";
         $i = $i +1;
     }
