@@ -1,4 +1,4 @@
-USE cs252test;
+USE nodues;
 
 CREATE TABLE transactions (
 		tid SERIAL NOT NULL,
