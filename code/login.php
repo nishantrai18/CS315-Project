@@ -24,6 +24,8 @@ if (@ftp_login(@ftp_connect("vyom.cc.iitk.ac.in"), $id, $pass))
         session_destroy();
         session_start();
         $_SESSION['id'] = $id;
+        header("Location: dash.html");
+        
     }
 }
 
@@ -33,5 +35,4 @@ else
 	session_destroy();
 	die();
 }
-		
 ?>
