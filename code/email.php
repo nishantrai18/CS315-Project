@@ -5,31 +5,20 @@ include_once("check.php");
 include_once('header.html');
 require("sql_conn.php");
 
-if(isset($_POST['complain'])){
-$tid = $_POST['complain'];
-$_POST=array();
-echo"
-    <form action='email.php' method='post'>
-    <center>
-    <table>
-    <th> Complaint Form </th>
-    <tr>
-    <td> Transaction ID: </td>
-    <td> <input type='number', name='tid' value='$tid'></input></td>
-    <td id='tid_error'></td>
-    </select>
-    </tr>
-    <td> Complaint: </td>
-    <td> <textarea name='complaint' cols='65' rows='7'></textarea></td>
-    <tr>
-    <td> <input type='submit' value='Submit'> </td>
-    <td id='submit_error'></td>
-    </tr>
-    </table>
-";
+if(array_key_exists('complain',$_SESSION)){
+$tid = $_SESSION['complain'];
+unset($_SESSION['complain']);
+
+ echo" <form action='email.php'
+method='post'> <center> <table> <th> Complaint Form </th> <tr> <td> Transaction
+ID: </td> <td> <input type='number', name='tid' value='$tid'></input></td> <td
+id='tid_error'></td> </select> </tr> <td> Complaint: </td> <td> <textarea
+name='complaint' cols='65' rows='7'></textarea></td> <tr> <td> <input
+type='submit' value='Submit'> </td> <td id='submit_error'></td> </tr> </table> ";
 }
 
 else{
+
     echo"
         <form action='email.php' method='post'>
         <center>

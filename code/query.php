@@ -142,7 +142,7 @@ if (isset($_POST['startDate'])){
         echo "<td>" . $row['sname'] . "</td>" . "<td>" . $row['dname'] . "</td>";
         echo "<td>" . $row['value'] . "</td>" . "<td>" . $row['date'] . "</td>";
         echo "<td>" . $row['remarks'] . "</td>" . "<td>" . $row['due'] . "</td>";
-        echo "<td>" . "<form action='email.php' method='post'>" .
+        echo "<td>" . "<form action='profileLogin.php' method='post'>" .
                 "<input type='hidden' name='complain' value=" . $row['tid'] . ">" .
                 "<input type='submit' value='Complain'></form>" . "</td>";
         echo "</tr>";

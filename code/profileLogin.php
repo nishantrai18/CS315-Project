@@ -1,60 +1,63 @@
 <?php
 
-$sname = "127.0.0.1";
-$uname = "root";
-$pwd = "db.123";
-$dbname = "nodues";
+@session_start();
+include_once("header.html");
+include_once("check.php");
 
-$connect = mysql_connect($sname,$uname,$pwd);
+echo "
+<div style='height:10%'></div>
 
-if (! $connect){
-    die("NOT CONNECTED!\n" . mysql_error());
+<div style='width:10%; margin:0 auto'>
+<img src='static/img/iitklogo.jpg' style='width:100%'></img>
+<h3 align='center'>Profile Login</h3>
+</div>
+<div style='margin: 0 auto; width:40%; text-align:center'>
+<b id='error' style='color:red'></b>
+<form action='profileLogin.php' method='post'>
+      <br><b>Profile Password:</b> <input style = 'margin:0 auto' type='password'
+                     name='pass' placeholder='Profile Password' required/><br>
+      <br><input type='submit' value='Login'>
+</form>
+";
+
+if (isset($_POST['complain'])){
+    $_SESSION['complain']=$_POST['complain'];
 }
 
-$userName = $_POST['id'];
-$userPass = $_POST['pass'];
+if(isset($_POST['pass'])){
+require("sql_conn.php");
 
-//Choose the required database 
-mysql_select_db($dbname);
+$userName = $_SESSION['id'];
+$userPass = $_POST['pass'];
 
 // Extract the decrypted passwords and usernames
 // Note that the table contains entries 'username' and 'password'
-$query = "SELECT aes_decrypt(password, 'some_secret_key') AS password, username FROM profLogin";
+$query = "SELECT aes_decrypt(password, 'some_secret_key') AS password FROM profLogin
+          WHERE username='$userName'";
 $result = mysql_query($query, $connect);
 
-if(! $result) {
-    die("Some error in profileLogin.php!\n" . mysql_error());
+if(!$result) {
+    echo"<script type='text/javascript'>
+    document.getElementById('error').innerHTML='Profile Login Failed';
+    </script>";
+    mysql_close($connect);
+    die();
 }
 
-// Get the number of rows in the result
-$num_rows = mysql_num_rows($result);
- 
-//Loop through the rows of table to check the password 
-while($num_rows > 0) {
-
-    $tmpDetails = mysql_fetch_array($result);
-    $tmpName    = $tmpDetails["username"];
-    $tmpPass    = $tmpDetails["password"];
-    $flag       = 0;
-
-    if (strcmp($tmpName, $userName) == 0) {
-        if (strcmp($tmpPass, $userPass) == 0) {
-            $flag = 1;
-            break;
-        }
+$result = mysql_fetch_assoc($result);
+if (strcmp($result['password'], $userPass) == 0) {
+    if (array_key_exists('complain',$_SESSION)){
+        header("Location: email.php");
     }
-         
-    $num_rows--;
- 
- }
+}
 
-if($flag == 1)
-    echo "<font color='green'> Successful Login! </font>";
-else
-    echo "<font color='red'> Unsuccessful Login! </font>";
+else{
+    echo"<script type='text/javascript'>
+    document.getElementById('error').innerHTML='Profile Login Failed';
+    </script>";
+    mysql_close($connect);
+    die();
+}
 
-echo "<br><br><br><center><form action='index.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
-
-mysql_close($connect);
-
+}
 ?>

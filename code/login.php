@@ -15,7 +15,7 @@ echo "
                      type='text' name='id' placeholder='CC Login' required/><br>
       <br><b>Password:</b> <input style = 'margin:0 auto' type='password'
                      name='pass' placeholder='Password' required/><br>
-      <br><input type='submit'>
+      <br><input type='submit' value='Login'>
 </form>
 
 ";
