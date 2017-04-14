@@ -46,8 +46,26 @@ if (@ftp_login(@ftp_connect("vyom.cc.iitk.ac.in"), $id, $pass))
         session_destroy();
         session_start();
         $_SESSION['id'] = $id;
-        header("Location: query.php");
 
+        require("sql_conn.php");
+        $query = "SELECT superFlag FROM admin WHERE uname='$id'";
+        $result = mysql_query($query,$connect);
+        $result = mysql_fetch_assoc($result);
+
+        if ($result){
+            $mode = $result['superFlag'];
+            if ($mode == 0){
+                $_SESSION['mode'] = 'Admin';
+            }
+            else{
+                $_SESSION['mode'] = 'Super_Admin';
+            }
+        }
+
+        else{
+            $_SESSION['mode'] = 'Student';
+        }
+        header("Location: query.php");
     }
 }
 
