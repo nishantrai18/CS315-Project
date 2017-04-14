@@ -1,8 +1,21 @@
-Create tables
-Login Session Security
+Create tables	(DONE)
+Login Session Security	(DONE)
 SQL Injection
 Admin, Student pages
+Adding Admins, Departments	(DONE)
 Dues query (Add index on date)
-Due summary
-Complaint registration
+Due summary	(DONE)
+Complaint registration	(DONE)
+Add Transactions
+View Transaction summary
+View summary using group by
 Due dates and reminders
+Add feature for seeing new dues (i.e. dues added in past week)
+Add feature for simplifying debts
+Improve GUI
+
+Bugs:
+
+Date query in transactions doesn't work
+Admin can add transaction of all departments
+insertTransaction.php cannot add dues to misc deps
