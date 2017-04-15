@@ -8,6 +8,7 @@ require("sql_conn.php");
 unset($_SESSION['insertDep']);
 unset($_SESSION['complain']);
 unset($_SESSION['insertAdmin']);
+unset($_SESSION['insertTransaction']);
 // In case user goes back without logging in
 
 // Extract the department names
@@ -65,19 +66,29 @@ echo "
 	</html>
 	";
 
-if ($_SESSION['mode'] == 'Super_Admin'){
+if ($_SESSION['mode'] != 'Student'){
     echo "<h2>Super Powers</h2>";
 
+    if ($_SESSION['mode'] == 'Super_Admin'){
     echo "
-    <form action='profileLogin.php' method='post'> .
+    <form action='profileLogin.php' method='post'>
     <input type='hidden' name='insertDep' value='none'>
     <input type='submit' value='Add New Department'></form>
     ";
     echo "
-    <form action='profileLogin.php' method='post'> .
+    <form action='profileLogin.php' method='post'>
     <input type='hidden' name='insertAdmin' value='none'>
     <input type='submit' value='Add New Admin'></form>
     ";
+    }
+
+    echo "
+    <form action='profileLogin.php' method='post'>
+    <input type='hidden' name='insertTransaction' value='none'>
+    <input type='submit' value='Record New Transaction'></form>
+    ";
+
+
 }
 
 if (isset($_POST['startDate'])){
@@ -174,8 +185,6 @@ if (isset($_POST['startDate'])){
     if($i == 0) {
         echo "<center><br><br><h3>No Data to show</h3><br><br><br></center>";
     }
-
-    echo "<br><br><br><center><form action='index.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
 
     mysql_close($connect);
 }

@@ -84,7 +84,6 @@ if (isset($_POST['dep'])){
     }
     // echo $query;
 
-    echo "<br><br><br><center><form action='index.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
 
     mysql_close($connect);
 }

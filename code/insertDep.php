@@ -75,8 +75,6 @@ if (isset($_POST['name'])){
         echo "<center><h2>Department Unique Name has already been taken!</h2>";
     }
 
-    echo "<br><br><br><center><form action='index.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
-
     mysql_close($connect);
 }
 ?>

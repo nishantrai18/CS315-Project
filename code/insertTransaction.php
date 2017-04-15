@@ -5,6 +5,8 @@ include_once("header.html");
 include_once("check.php");
 require("sql_conn.php");
 
+unset($_SESSION['insertTransaction']);
+
 // Extract the student details
 $query = "SELECT sname, name FROM student";
 $result = mysql_query($query, $connect);
@@ -105,7 +107,6 @@ if (isset($_POST['dname'])){
     }
     // echo $query;
 
-    echo "<br><br><br><center><form action='index.html' method='post'> <input type='submit' value='Go Back to Main Page'></form></center>";
 
     mysql_close($connect);
 }

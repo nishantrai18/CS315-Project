@@ -32,6 +32,9 @@ else if (isset($_POST['insertAdmin'])){
     $_SESSION['insertAdmin']=$_POST['insertAdmin'];
 }
 
+else if (isset($_POST['insertTransaction'])){
+    $_SESSION['insertTransaction']=$_POST['insertTransaction'];
+}
 else{
     echo"<script type='text/javascript'>alert('No reason for profile login!');
          window.location.href='query.php';</script>";
@@ -67,6 +70,9 @@ if (strcmp($result['password'], $userPass) == 0) {
     }
     if (array_key_exists('insertDep',$_SESSION)){
         header("Location: insertDep.php");
+    }
+    if (array_key_exists('insertTransaction',$_SESSION)){
+        header("Location: insertTransaction.php");
     }
 }
 
