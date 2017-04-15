@@ -80,6 +80,11 @@ if ($_SESSION['mode'] != 'Student'){
     <input type='hidden' name='insertAdmin' value='none'>
     <input type='submit' value='Add New Admin'></form>
     ";
+    echo "
+    <form action='profileLogin.php' method='post'>
+    <input type='hidden' name='modifyAdmin' value='none'>
+    <input type='submit' value='Modify Admin rights'></form>
+    ";
     }
 
     echo "
@@ -97,6 +102,7 @@ if (isset($_POST['startDate'])){
     $stat      = $_POST['stat'];
     $statVal   = 0;
 
+    $username = $_SESSION['id'];
     // echo $stat;
 
     if (strcmp($stat, 'due') == 0)
@@ -117,6 +123,7 @@ if (isset($_POST['startDate'])){
 
     // Adding date range query, guaranteed to be included
     $query = $query . "WHERE (T.date BETWEEN '$startDate' AND '$endDate')\n";
+    $query = $query . "AND T.sname = '$username'\n";
 
     $depArr = $_POST['depList'];
     $numDep = count($depArr);

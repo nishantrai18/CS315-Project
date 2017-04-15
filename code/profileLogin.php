@@ -32,6 +32,10 @@ else if (isset($_POST['insertAdmin'])){
     $_SESSION['insertAdmin']=$_POST['insertAdmin'];
 }
 
+else if (isset($_POST['modifyAdmin'])){
+    $_SESSION['modifyAdmin']=$_POST['modifyAdmin'];
+}
+
 else if (isset($_POST['insertTransaction'])){
     $_SESSION['insertTransaction']=$_POST['insertTransaction'];
 }
@@ -73,6 +77,9 @@ if (strcmp($result['password'], $userPass) == 0) {
     }
     if (array_key_exists('insertTransaction',$_SESSION)){
         header("Location: insertTransaction.php");
+    }
+    if (array_key_exists('modifyAdmin',$_SESSION)){
+        header("Location: modifyAdmin.php");
     }
 }
 

@@ -85,7 +85,7 @@ if (isset($_POST['dname'])){
 
     //Find out whether the admin has the right to modify this department
     $adminname = $_SESSION['id'];
-    $query = "SELECT name, dname FROM departments WHERE uname = '$adminname'";
+    $query = "SELECT name, dname FROM admin WHERE uname = '$adminname'";
     $result = mysql_query($query, $connect);
     $row = mysql_fetch_array($result);
     $allow = 0;

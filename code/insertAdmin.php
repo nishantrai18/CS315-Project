@@ -22,7 +22,7 @@ echo "
 
 		<form action='insertAdmin.php' method='post'>
 			<fieldset>
-				<legend><h2 align='center'> Insert Department Admin </h2> </legend>
+				<legend><h2 align='center'> Insert New Department Admin </h2> </legend>
                 <table>
                 <tr>
                 <tr><td>Administrator Username : </td><td><input type='text' pattern = '[ a-zA-Z0-9]*'
@@ -57,13 +57,14 @@ echo "
 if (isset($_POST['dep'])){
     $uname = $_POST['uname'];
     $name  = $_POST['name'];
-    $dname = $_POST['dname'];
+    $dname = $_POST['dep'];
 
-    $userList = "SELECT username FROM profLogin";
+    $query = "SELECT username FROM profLogin";
+    $userList = mysql_query($query, $connect);
 
     $flag = 0;
     while ($row = mysql_fetch_array($userList)) {
-        if (strcmp($row['username'], $uname) == 0) {
+        if ($row['username'] == $uname) {
             $flag = 1;
             break;
         }

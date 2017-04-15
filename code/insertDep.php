@@ -26,7 +26,7 @@ echo "
                 <table>
                 <tr>
                 <tr><td>Department Unique Name : </td><td><input type='text' pattern = '[ a-zA-Z0-9]*'
-                        name='dname' placeholder='Username' required/></td></tr>
+                        name='dname' placeholder='Department unique name' required/></td></tr>
                 <tr><td>Department's Name : </td><td><input type='text' pattern = '[ a-zA-Z]*'
                         name='name' placeholder='Department Name' required/></td></tr>
                 <tr><td>Department Type : </td>
