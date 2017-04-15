@@ -28,7 +28,7 @@ echo "
                 <tr><td>Department Unique Name : </td><td><input type='text' pattern = '[ a-zA-Z0-9]*'
                         name='dname' placeholder='Username' required/></td></tr>
                 <tr><td>Department's Name : </td><td><input type='text' pattern = '[ a-zA-Z]*'
-                        name='name' placeholder='Administrator Name' required/></td></tr>
+                        name='name' placeholder='Department Name' required/></td></tr>
                 <tr><td>Department Type : </td>
                 <td><select name='miscFlag'>
                     <option value=0>Academic Department</option>

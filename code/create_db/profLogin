@@ -2,4 +2,6 @@ USE nodues;
 
 CREATE TABLE profLogin (username varchar(20) NOT NULL, password varchar(100) NOT NULL, PRIMARY KEY(username));
 
-INSERT INTO profLogin values("admin", aes_encrypt("admin", "some_secret_key"));
+INSERT INTO profLogin values("nishantr", aes_encrypt("nishantr", "some_secret_key"));
+INSERT INTO profLogin values("amlan", aes_encrypt("amlan", "some_secret_key"));
+

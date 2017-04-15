@@ -12,4 +12,4 @@ INSERT INTO admin
 VALUES ('amlan', 'Amlan Kar', NULL, 1);
 
 INSERT INTO admin
-VALUES ('nishant', 'Nishant Rai', NULL, 1);
+VALUES ('nishantr', 'Nishant Rai', NULL, 1);

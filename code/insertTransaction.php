@@ -83,14 +83,37 @@ if (isset($_POST['dname'])){
     $date    = $_POST['date'];
     $remarks = $_POST['remarks'];
 
-    $query = "SELECT sname, dname FROM student WHERE sname = '$sname'";
+    //Find out whether the admin has the right to modify this department
+    $adminname = $_SESSION['id'];
+    $query = "SELECT name, dname FROM departments WHERE uname = '$adminname'";
     $result = mysql_query($query, $connect);
-
     $row = mysql_fetch_array($result);
-    $flag = 1;
+    $allow = 0;
+    if ($row['dname'] == $dname) {
+        $allow = 1;
+    }
 
-    if (strcmp($row['dname'], $dname) != 0)
-        $flag = 0;
+    if ($allow == 0) {
+        echo "<center><h2>Admin does not belong to this department!</h2>";
+    }
+
+    // Find out whether the department entered is a misc one or not
+    $query = "SELECT dname, miscFlag FROM departments WHERE dname = '$dname'";
+    $result = mysql_query($query, $connect);
+    $row = mysql_fetch_array($result);
+    $miscFlag = $row['miscFlag'];
+
+    // Find out the allowed department of the student (Done only in case the dep isn't misc)
+    $flag = 1;
+    if ($miscFlag == 0) {
+        $query = "SELECT sname, dname FROM student WHERE sname = '$sname'";
+        $result = mysql_query($query, $connect);
+
+        $row = mysql_fetch_array($result);
+
+        if (strcmp($row['dname'], $dname) != 0)
+            $flag = 0;
+    }
 
     if ($flag) {
         $query = "INSERT INTO transactions VALUES (0, '$sname','$dname', $value, '$date', '$remarks', 1)";
