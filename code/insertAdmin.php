@@ -5,6 +5,7 @@ include_once("header.html");
 include_once("check.php");
 require("sql_conn.php");
 
+unset($_SESSION['insertAdmin']);
 // Extract the department names
 $query = "SELECT dname, name FROM department";
 $result = mysql_query($query, $connect);

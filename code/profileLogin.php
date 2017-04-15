@@ -24,6 +24,19 @@ if (isset($_POST['complain'])){
     $_SESSION['complain']=$_POST['complain'];
 }
 
+else if (isset($_POST['insertDep'])){
+    $_SESSION['insertDep']=$_POST['insertDep'];
+}
+
+else if (isset($_POST['insertAdmin'])){
+    $_SESSION['insertAdmin']=$_POST['insertAdmin'];
+}
+
+else{
+    echo"<script type='text/javascript'>alert('No reason for profile login!');
+         window.location.href='query.php';</script>";
+}
+
 if(isset($_POST['pass'])){
 require("sql_conn.php");
 
@@ -48,6 +61,12 @@ $result = mysql_fetch_assoc($result);
 if (strcmp($result['password'], $userPass) == 0) {
     if (array_key_exists('complain',$_SESSION)){
         header("Location: email.php");
+    }
+    if (array_key_exists('insertAdmin',$_SESSION)){
+        header("Location: insertAdmin.php");
+    }
+    if (array_key_exists('insertDep',$_SESSION)){
+        header("Location: insertDep.php");
     }
 }
 

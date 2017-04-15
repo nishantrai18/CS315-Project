@@ -5,6 +5,11 @@ include_once("header.html");
 include_once("check.php");
 require("sql_conn.php");
 
+unset($_SESSION['insertDep']);
+unset($_SESSION['complain']);
+unset($_SESSION['insertAdmin']);
+// In case user goes back without logging in
+
 // Extract the department names
 $query = "SELECT dname, name FROM department";
 $result = mysql_query($query, $connect);
@@ -59,6 +64,21 @@ echo "
 	</body>
 	</html>
 	";
+
+if ($_SESSION['mode'] == 'Super_Admin'){
+    echo "<h2>Super Powers</h2>";
+
+    echo "
+    <form action='profileLogin.php' method='post'> .
+    <input type='hidden' name='insertDep' value='none'>
+    <input type='submit' value='Add New Department'></form>
+    ";
+    echo "
+    <form action='profileLogin.php' method='post'> .
+    <input type='hidden' name='insertAdmin' value='none'>
+    <input type='submit' value='Add New Admin'></form>
+    ";
+}
 
 if (isset($_POST['startDate'])){
     $startDate = $_POST['startDate'];
