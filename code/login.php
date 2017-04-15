@@ -29,7 +29,7 @@ unset($_POST);
 // Note that this condition is just added for testing purposes
 // The condition implies access to users with id==password
 // And whose id follows (contains) the format testuserX
-$cond = (($id == $pass) and (strpos($id, 'testuser') !== false));
+$cond = (($id == $pass) and (strpos($id, 'test') !== false));
 // Remove it in case we need to run it actually
 
 // Original condition, only allows login using cc credentials

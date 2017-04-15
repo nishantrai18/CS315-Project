@@ -98,7 +98,7 @@ if (isset($_POST['startDate'])){
 
     // Adding date range query, guaranteed to be included
     $query = $query . "WHERE (T.date BETWEEN '$startDate' AND '$endDate')\n";
-    $query = $query . "AND T.dname = '$adminname'\n";
+    $query = $query . "AND T.dname = '$depname'\n";
 
     $studArr = $_POST['studList'];
     $numStud = count($studArr);
@@ -126,7 +126,7 @@ if (isset($_POST['startDate'])){
 
     // echo $query;
 
-    # Checking the transcation status
+    # Checking the transaction status
     if ($statVal != 2) {
         $query = $query . "AND ";
         $query = $query . "T.due = $statVal";
