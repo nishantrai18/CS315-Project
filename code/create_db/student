@@ -3,7 +3,6 @@ USE nodues;
 CREATE TABLE student (
 		sname varchar(20) NOT NULL,
 		name varchar(20) NOT NULL,
-		password varchar(20) NOT NULL,
 		rollno varchar(10) NOT NULL,
 		dname varchar(20) NOT NULL,
 		PRIMARY KEY(sname),
@@ -13,7 +12,6 @@ CREATE TABLE student (
 INSERT INTO student values (
 				"nishant",
 				"Nishant Rai",
-				aes_encrypt("nishant", "some_secret_key"),
 				"13449",
 				"cse"
 );
@@ -26,7 +24,6 @@ INSERT INTO profLogin values (
 INSERT INTO student values (
 				"amlan",
 				"Amlan Kar",
-				aes_encrypt("amlan", "some_secret_key"),
 				"13105",
 				"cse"
 );
