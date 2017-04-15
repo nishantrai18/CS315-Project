@@ -112,8 +112,11 @@ if (isset($_POST['startDate'])){
     mysql_select_db($dbname);
 
     $query = "SELECT *
-              FROM transactions
+              FROM transactions as T
               ";
+
+    // Adding date range query, guaranteed to be included
+    $query = $query . "WHERE (T.date BETWEEN '$startDate' AND '$endDate')\n";
 
     $depArr = $_POST['depList'];
     $numDep = count($depArr);
@@ -129,7 +132,7 @@ if (isset($_POST['startDate'])){
 
     # Check if all departments were queried else select the queried ones
     if ($flag == 0) {
-        $query = $query . "WHERE dname IN (";
+        $query = $query . "AND T.dname IN (";
         for($i = 0; $i < $numDep; $i++) {
             if ($i > 0)
                 $query = $query . ", '$depArr[$i]'";
@@ -143,11 +146,8 @@ if (isset($_POST['startDate'])){
 
     # Checking the transcation status
     if ($statVal != 2) {
-        if ($flag == 1)
-            $query = $query . "WHERE ";
-        else
-            $query = $query . "AND ";
-        $query = $query . "due = $statVal";
+        $query = $query . "AND ";
+        $query = $query . "T.due = $statVal";
     }
 
     // echo $query;
@@ -162,7 +162,7 @@ if (isset($_POST['startDate'])){
     // Not really required here
     $num_rows = mysql_num_rows($result);
 
-    echo "<center><h2>Relavant Transactions</h2><table border='2'>\n<tr>\n<th> Student Name </th>\n" .
+    echo "<center><h2>Relevant Transactions</h2><table border='2'>\n<tr>\n<th> Student Name </th>\n" .
         "<th> Department Name </th>\n<th> Value </th>\n<th> Date </th>\n" .
         "<th> Remarks </th>\n<th> Status </th>\n<th> Complain </th>\n";
 

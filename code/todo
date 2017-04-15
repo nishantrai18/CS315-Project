@@ -8,8 +8,8 @@ View Transaction summary Student (DONE)
 
 Admin, Student pages	(Somewhat DONE)
 Dues query (Add index on date)
-View Transaction summary Admins
-View summary using group by
+View Dues summary Admins
+View Summary using group by
 SQL Injection
 Important: Add queries with multiple joins
 
@@ -20,7 +20,7 @@ Improve GUI	(No)
 
 Bugs:
 
-Date query in transactions doesn't work
+Date query in transactions doesn't work	(Fixed)
 Admin can add transaction of all departments	(Fixed)
 insertTransaction.php cannot add dues to misc deps	(Fixed)
 No reason for profile login	(Fixed)
