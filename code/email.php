@@ -98,12 +98,12 @@ if ($result){
     if(!$mail->Send()){
         echo"<script type='text/javascript'>alert('Complaint could not be sent,
         please try again later!');
-        window.location.href='query.php';</script>";
+        window.location.href='dash.php';</script>";
     }
     else
     {
         echo"<script type='text/javascript'>alert('Complaint Sent!');
-             window.location.href='query.php';</script>";    }
+             window.location.href='dash.php';</script>";    }
     }
 
 else{

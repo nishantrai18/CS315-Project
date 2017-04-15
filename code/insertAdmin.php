@@ -11,7 +11,7 @@ $query = "SELECT dname, name FROM department";
 $result = mysql_query($query, $connect);
 
 if(! $result) {
-    die("Some error in query.php!\n" . mysql_error());
+    die("Some error in insertAdmin.php!\n" . mysql_error());
 }
 
 echo "

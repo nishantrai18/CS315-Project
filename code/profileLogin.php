@@ -20,7 +20,11 @@ echo "
 </form>
 ";
 
-if (isset($_POST['complain'])){
+if (isset($_POST['clearDues'])){
+    $_SESSION['clearDues']=$_POST['clearDues'];
+}
+
+else if (isset($_POST['complain'])){
     $_SESSION['complain']=$_POST['complain'];
 }
 
@@ -41,7 +45,7 @@ else if (isset($_POST['insertTransaction'])){
 }
 else{
     echo"<script type='text/javascript'>alert('No reason for profile login!');
-         window.location.href='query.php';</script>";
+         window.location.href='dash.php';</script>";
 }
 
 if(isset($_POST['pass'])){
@@ -56,7 +60,7 @@ $query = "SELECT aes_decrypt(password, 'some_secret_key') AS password FROM profL
           WHERE username='$userName'";
 $result = mysql_query($query, $connect);
 
-if(!$result) {
+if (!$result) {
     echo"<script type='text/javascript'>
     document.getElementById('error').innerHTML='Profile Login Failed';
     </script>";
@@ -80,6 +84,9 @@ if (strcmp($result['password'], $userPass) == 0) {
     }
     if (array_key_exists('modifyAdmin',$_SESSION)){
         header("Location: modifyAdmin.php");
+    }
+    if (array_key_exists('clearDues',$_SESSION)){
+        header("Location: clearDues.php");
     }
 }
 

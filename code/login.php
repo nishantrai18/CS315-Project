@@ -42,7 +42,7 @@ if ($cond or (@ftp_login(@ftp_connect("vyom.cc.iitk.ac.in"), $id, $pass)))
     {
         if($_SESSION['id'] == $id){
         echo"<script type='text/javascript'>alert('User already logged in!');
-             window.location.href='query.php';</script>";
+             window.location.href='dash.php';</script>";
         }
 
         else{
@@ -76,7 +76,7 @@ if ($cond or (@ftp_login(@ftp_connect("vyom.cc.iitk.ac.in"), $id, $pass)))
         else{
             $_SESSION['mode'] = 'Student';
         }
-        header("Location: query.php");
+        header("Location: dash.php");
     }
 }
 

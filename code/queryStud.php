@@ -5,51 +5,39 @@ include_once("header.html");
 include_once("check.php");
 require("sql_conn.php");
 
-//Find out whether the admin has the right to modify this department
-$adminname = $_SESSION['id'];
-$query = "SELECT name, dname FROM admin WHERE uname = '$adminname'";
+// Extract the department names
+$query = "SELECT dname, name FROM department";
 $result = mysql_query($query, $connect);
 
-if(! $result)
-    die("Some error in queryAdmin.php!\n" . mysql_error());
+if(! $result) {
+    die("Some error in queryStud.php!\n" . mysql_error());
+}
 
-$row = mysql_fetch_array($result);
-$aname = $row['name'];
-$depname = $row['dname'];
-
-// Extract the student details
-$query = "SELECT sname, name FROM student";
-$result = mysql_query($query, $connect);
-
-if(! $result)
-    die("Some error in queryAdmin.php!\n" . mysql_error());
-
-// Query for a normal admin
 echo "
 	<html>
 	<body>
 
 		<br>
 
-		<form action='queryAdmin.php' method='post'>
+		<form action='query.php' method='post'>
 			<fieldset>
-				<legend><h2 align='center'> Hi $aname, Query Dues for $depname Department </h2> </legend>
+				<legend><h2 align='center'> Query Dues for a Department </h2> </legend>
                 <table>
                 <tr>
-                <tr><td>Student Name (ID) : </b>
-                <td><select multiple name='studList[]' size='3' required>
-    ";
+        		<td>Department Name : </b></td>
+				<td><select multiple name='depList[]' size='3' required>
+	";
 
 // Get the number of rows in the result
 $num_rows = mysql_num_rows($result);
 
 for ($i = 0; $i < $num_rows; $i++) {
-    $tmpDetails = mysql_fetch_array($result);
-    echo ("<option value=" . $tmpDetails['sname'] . ">" . $tmpDetails['name'] . " (" . $tmpDetails['sname'] . ") " . "</option>\n");
+	$tmpDetails = mysql_fetch_array($result);
+	echo ("<option value=" . $tmpDetails['dname'] . ">" . $tmpDetails['name'] . "</option>\n");
 }
 
 echo "
-				<option value='##all##'> All Students </option>
+				<option value='##all##'> All Departments </option>
                 </select></td></tr>
 				<tr><td>Initial Date : </td><td><input type='date'
 						name='startDate' placeholder='dd-mm-yyyy' required/></td></tr>
@@ -72,12 +60,14 @@ echo "
 	</html>
 	";
 
+
 if (isset($_POST['startDate'])){
     $startDate = $_POST['startDate'];
     $endDate   = $_POST['endDate'];
     $stat      = $_POST['stat'];
     $statVal   = 0;
 
+    $username = $_SESSION['id'];
     // echo $stat;
 
     if (strcmp($stat, 'due') == 0)
@@ -98,15 +88,15 @@ if (isset($_POST['startDate'])){
 
     // Adding date range query, guaranteed to be included
     $query = $query . "WHERE (T.date BETWEEN '$startDate' AND '$endDate')\n";
-    $query = $query . "AND T.dname = '$depname'\n";
+    $query = $query . "AND T.sname = '$username'\n";
 
-    $studArr = $_POST['studList'];
-    $numStud = count($studArr);
+    $depArr = $_POST['depList'];
+    $numDep = count($depArr);
     $flag = 0;
 
     # Finding the all department flag
-    for($i = 0; $i < $numStud; $i++) {
-        if (strcmp($studArr[$i], "##all##") == 0) {
+    for($i = 0; $i < $numDep; $i++) {
+        if (strcmp($depArr[$i], "##all##") == 0) {
             $flag = 1;
             break;
         }
@@ -114,19 +104,19 @@ if (isset($_POST['startDate'])){
 
     # Check if all departments were queried else select the queried ones
     if ($flag == 0) {
-        $query = $query . "AND T.sname IN (";
-        for($i = 0; $i < $numStud; $i++) {
+        $query = $query . "AND T.dname IN (";
+        for($i = 0; $i < $numDep; $i++) {
             if ($i > 0)
-                $query = $query . ", '$studArr[$i]'";
+                $query = $query . ", '$depArr[$i]'";
             else
-                $query = $query . "'$studArr[$i]'";
+                $query = $query . "'$depArr[$i]'";
         }
         $query = $query . ")\n";
     }
 
     // echo $query;
 
-    # Checking the transaction status
+    # Checking the transcation status
     if ($statVal != 2) {
         $query = $query . "AND ";
         $query = $query . "T.due = $statVal";
@@ -137,33 +127,34 @@ if (isset($_POST['startDate'])){
     $result = mysql_query($query, $connect);
 
     if(! $result) {
-        die("Some error in queryAdmin.php!\n" . mysql_error());
+        die("Some error in queryDues.php!\n" . mysql_error());
     }
 
     // Get the number of rows in the result
     // Not really required here
     $num_rows = mysql_num_rows($result);
 
-    echo "<center><h2>Relevant Transactions</h2><table border='2'>\n<tr>\n<th> Student's Name </th>\n" .
-        "<th> Value </th>\n<th> Date </th>\n<th> Remarks </th>\n<th> Status </th>\n\n";
+    echo "<center><h2>Relevant Transactions</h2><table border='2'>\n<tr>\n<th> Student Name </th>\n" .
+        "<th> Department Name </th>\n<th> Value </th>\n<th> Date </th>\n" .
+        "<th> Remarks </th>\n<th> Status </th>\n<th> Complain </th>\n";
 
     $i = 0;
 
     while($row = mysql_fetch_array($result)) {
         echo "<tr>";
-        echo "<td>" . $row['sname'] . "</td>";
+        echo "<td>" . $row['sname'] . "</td>" . "<td>" . $row['dname'] . "</td>";
         echo "<td>" . $row['value'] . "</td>" . "<td>" . $row['date'] . "</td>";
         echo "<td>" . $row['remarks'] . "</td>" . "<td>" . $row['due'] . "</td>";
         echo "<td>" . "<form action='profileLogin.php' method='post'>" .
-                "<input type='hidden' name='clearDues' value=" . $row['tid'] . ">" .
-                "<input type='submit' value='Clear Due'></form>" . "</td>";
+                "<input type='hidden' name='complain' value=" . $row['tid'] . ">" .
+                "<input type='submit' value='Complain'></form>" . "</td>";
         echo "</tr>";
         $i = $i +1;
     }
 
     echo "</table></center>";
 
-    if ($i == 0) {
+    if($i == 0) {
         echo "<center><br><br><h3>No Data to show</h3><br><br><br></center>";
     }
 

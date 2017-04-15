@@ -10,15 +10,21 @@ Admin, Student pages	(DONE)
 Dues query (Add index on date)	(DONE)
 View Dues summary Admins		(DONE)
 Add feature to modify rights of existing admins	(DONE)
-Add functionality to bypass cc login	(Somewhat DONE)
+Add functionality to bypass cc login	(DONE)
 Add scripts to make multiple random users, departments, etc	(DONE)
+Finalize the page structure, could probably transfer queries to another page (Add more actions to both admins and students)	(DONE)
 
+
+Add textual notes to regarding info about the page and other features you have
 View Summary using group by	(Really necessary, at least sort it)
-Add feature to modify departments of students
+Add feature to clear due
 SQL Injection
-Important: Add complicated queries with multiple joins
+Important: Add complicated queries with multiple joins	(Name of Student)	(Sort of done)
 	- Total dues
 
+
+Change Profile Password?
+Add feature to modify departments of students	(No)
 Due dates and reminders	(Not now)
 Add feature for seeing new dues (i.e. dues added in past week)	(Not now)
 Add feature for simplifying debts	(Not now)
@@ -26,10 +32,12 @@ Improve GUI	(No)
 
 Bugs:
 
+Messed up insertTransaction page
 Profile login says no reason to login even in the case of wrong password
 Fix welcome page for admin (It shows the students version of the queries)
+
 A student can be a part of mis departments (No, if we ensure it originally)
-queryAdmin.php doesn't show the relevant transactions	(DONE)
+queryAdmin.php doesn't show the relevant transactions	(Fixed)
 In query see all the transactions (Name field not added)	(Fixed)
 Date query in transactions doesn't work	(Fixed)
 Admin can add transaction of all departments	(Fixed)
