@@ -19,7 +19,7 @@ echo "
 
 		<br>
 
-		<form action='query.php' method='post'>
+		<form action='queryStud.php' method='post'>
 			<fieldset>
 				<legend><h2 align='center'> Query Dues for a Department </h2> </legend>
                 <table>
