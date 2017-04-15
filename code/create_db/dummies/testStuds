@@ -1,0 +1,16 @@
+echo "USE nodues;";
+
+for i in {0..36}; do
+	echo "INSERT INTO student values (
+			'teststud$i',
+			'Test Student $i',
+			'$((13000+$i))',
+			'testdep$((2 * $(($i % 4))))'
+	);";
+	echo "INSERT INTO profLogin values (
+			'teststud$i',
+			aes_encrypt('teststud$i', 'some_secret_key')
+	);";
+	echo;
+done
+

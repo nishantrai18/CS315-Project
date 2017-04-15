@@ -1,0 +1,10 @@
+echo "USE nodues;";
+
+for i in {0..13}; do
+	echo "INSERT INTO admin VALUES (
+			'testadmin$i',
+			'Test Admin $i, testdep$(($i % 7))',
+			'testdep$(($i % 7))',
+			0
+	);";
+done;

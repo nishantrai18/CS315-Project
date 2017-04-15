@@ -1,0 +1,9 @@
+echo "USE nodues;";
+
+for i in {0..6}; do
+	echo "INSERT INTO department values (
+			'testdep$i',
+			'Test $i Misc $(($i % 2))',
+			$(($i % 2))
+	);";
+done;
