@@ -7,4 +7,10 @@ for i in {0..13}; do
 			'testdep$(($i % 7))',
 			0
 	);";
+	echo "INSERT INTO profLogin values (
+			'testadmin$i',
+			aes_encrypt('testadmin$i', 'some_secret_key')
+	);";
+	echo;
+
 done;

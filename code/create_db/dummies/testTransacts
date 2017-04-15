@@ -4,7 +4,7 @@ for i in {0..360}; do
 
 	tmpStud="teststud$(($i%36))";
 	tmpDep="testdep$((2 * $(($i % 4))))";
-	tmpDepMisc="testdep$(($((2 * $(($i % 4)))) + 1))";
+	tmpDepMisc="testdep$(($((2 * $(($i % 3)))) + 1))";
 	tmpVal=$((100 + $(($i * 100))));
 	tmpDate="200$(($i % 10))-$(($(($i % 13))+1))-$(($(($i % 28))+1))";
 
