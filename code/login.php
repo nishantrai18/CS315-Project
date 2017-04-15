@@ -11,7 +11,7 @@ echo "
 <div style='margin: 0 auto; width:40%; text-align:center'>
 <b id='error' style='color:red'></b>
 <form action='login.php' method='post'>
-      <br><b>Username:</b> <input style = 'margin: 0 auto' pattern = '[ a-zA-Z]*'
+      <br><b>Username:</b> <input style = 'margin: 0 auto' pattern = '[ a-zA-Z0-9]*'
                      type='text' name='id' placeholder='CC Login' required/><br>
       <br><b>Password:</b> <input style = 'margin:0 auto' type='password'
                      name='pass' placeholder='Password' required/><br>
@@ -25,7 +25,18 @@ session_start();
 $id=$_POST['id'];
 $pass=($_POST['pass']);
 unset($_POST);
-if (@ftp_login(@ftp_connect("vyom.cc.iitk.ac.in"), $id, $pass))
+
+// Note that this condition is just added for testing purposes
+// The condition implies access to users with id==password
+// And whose id follows (contains) the format testuserX
+$cond = (($id == $pass) and (strpos($id, 'testuser') !== false));
+// Remove it in case we need to run it actually
+
+// Original condition, only allows login using cc credentials
+// if (@ftp_login(@ftp_connect("vyom.cc.iitk.ac.in"), $id, $pass))
+// Replace the below with the above when we need to actually run it
+
+if ($cond or (@ftp_login(@ftp_connect("vyom.cc.iitk.ac.in"), $id, $pass)))
 {
     if (array_key_exists('id', $_SESSION))
     {

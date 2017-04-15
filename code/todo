@@ -6,12 +6,18 @@ Complaint registration	(DONE)
 Add Transactions	(DONE)
 View Transaction summary Student (DONE)
 
-Admin, Student pages	(Somewhat DONE)
-Dues query (Add index on date)
-View Dues summary Admins
-View Summary using group by
+Admin, Student pages	(DONE)
+Dues query (Add index on date)	(DONE)
+View Dues summary Admins		(DONE)
+Add feature to modify rights of existing admins	(DONE)
+View Summary using group by	(Not now)
+Add feature to modify departments of students
 SQL Injection
-Important: Add queries with multiple joins
+Important: Add complicated queries with multiple joins
+	- Total dues
+
+Add functionality to bypass cc login	(Somewhat DONE)
+Add scripts to make multiple random users, departments, etc
 
 Due dates and reminders	(Not now)
 Add feature for seeing new dues (i.e. dues added in past week)	(Not now)
@@ -20,6 +26,8 @@ Improve GUI	(No)
 
 Bugs:
 
+A student can be a part of mis departments (No, if we ensure it originally)
+In query see all the transactions (Name field not added)	(Fixed)
 Date query in transactions doesn't work	(Fixed)
 Admin can add transaction of all departments	(Fixed)
 insertTransaction.php cannot add dues to misc deps	(Fixed)
